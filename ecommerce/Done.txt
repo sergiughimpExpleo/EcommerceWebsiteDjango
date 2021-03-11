@@ -1,0 +1,33 @@
+
+Video 1:
+    1. Setup & Templates | Part 1
+        1. Configure App
+            1. Install Django
+            2. Start Project
+            3. Create App
+            4. Add app to settings.py
+        2. Templates
+            1. Create Templates Folder
+            2. Create Templates
+        3. Views & URLs
+            1. Create Views
+            2. URLs
+            3. Base URLs Configurations
+        4. Static Files
+            1. "Static" Folder
+            2. CSS File
+            3. STATICFILES_DIRES
+            4. Add Static Files to Page
+            5. Add Image
+        5. Main Template
+            1. Add HTML Boilerplate to main.html
+            2. Adding Viewport & Static
+            3. Adding Bootstrap
+            4. Container/Navbar Placeholder
+            5. Inheriting
+        6. Navbar
+            1. Bootstrap Navbar
+            2. Dark Theme
+            3. Customize Navbar
+            4. Custom CSS
+        
