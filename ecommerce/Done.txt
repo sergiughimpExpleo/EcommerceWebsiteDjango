@@ -30,4 +30,16 @@ Video 1:
             2. Dark Theme
             3. Customize Navbar
             4. Custom CSS
-        
+***        
+        7. store.html
+            1. Layout
+            2. Placeholder Content
+        8. cart.html
+            1. Layout
+            2. cart headers
+            3. cart rows
+        9. checkout.html
+            1. layout
+            2. form
+            3. payment option
+            4. order summary
