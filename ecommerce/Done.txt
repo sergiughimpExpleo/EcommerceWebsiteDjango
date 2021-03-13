@@ -43,3 +43,38 @@ Video 1:
             2. form
             3. payment option
             4. order summary
+***
+Video 2:
+    2. Data Structures
+        1. Models
+            0. Create a diagram for the models from the app
+                1. Relationship of all the models from the app
+            1. Import "User" Model
+                1. Create a user to be a customer that can buy some products
+                2. Create a superuser to manage the app
+            2. "Customer" Model
+                1. Create a OneToOne relationship between the "User" and "Customer"
+            3. "Product", "Order" & "OrderItem" Models
+            4. Shipping Model
+            5. Migrate database
+            6. admin.py
+        2. Render Products
+            1. Query Products
+            2. Render Products
+        3. Product Image Field
+            1. ImageField()
+            2. MEDIA_ROOT
+            3. MEDIA_URL
+            4. Urls.py Configuration
+            5. Render Images
+            6. Image Error Solution
+        4. User Cart
+            1. Add data (Admin panel)
+            2. Query Data (Cart)
+                1. User Authenticated
+                2. User not Authenticated
+            3. Render data (cart.html)
+            4. Calculating Totals
+            5. Query Totals
+            6. Render Totals
+            7. Checkout Page Data
