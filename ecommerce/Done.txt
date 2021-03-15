@@ -8,7 +8,7 @@ Video 1:
             4. Add app to settings.py
         2. Templates
             1. Create Templates Folder
-            2. Create Templates
+            2. Create Templates Store
         3. Views & URLs
             1. Create Views
             2. URLs
@@ -24,31 +24,65 @@ Video 1:
             2. Adding Viewport & Static
             3. Adding Bootstrap
             4. Container/Navbar Placeholder
-            5. Inheriting
+            5. Inheriting Pages from Main Template
         6. Navbar
             1. Bootstrap Navbar
             2. Dark Theme
             3. Customize Navbar
+                1. Navigation bar
+                2. Login button & Cart button
             4. Custom CSS
 ***        
         7. store.html
             1. Layout
+                1. Create the Bootstrap columns
             2. Placeholder Content
+                1. Images
+                2. Titles
+                3. "Add" button
+                4. "View" button
+                5. Price
         8. cart.html
             1. Layout
+                1. Create the Bootstrap columns and boxes
             2. cart headers
+                1. Back to "Continue Shopping" button
+                2. Number of Items
+                3. Total Price
+                4. "Checkout" button
             3. cart rows
+                1. Table
+                    1. Items
+                    2. Price
+                    3. Quantity
+                    4. Total Price
         9. checkout.html
             1. layout
+                1. Create the Bootstrap columns and boxes
             2. form
-            3. payment option
+                1. User info
+                2. Shipping info
+                3. Button "Continue"
+            3. payment option 
             4. order summary
+                1. "Back to Cart" button
+                2. Order summary
+                3. Details about products
+                4. Number of Items
+                5. Total Price
 ***
 Video 2:
     2. Data Structures
         1. Models
-            0. Create a diagram for the models from the app
-                1. Relationship of all the models from the app
+*           0. Create a diagram for the 5 models from the app
+                1. Relationship of all the 5 models from the app
+                2. Description of Models
+                    1. User = An instance of this models will be created for each customer that registers with our website. This model will give us the ability to later use Django default authentication system without having manually set this up ourselves.
+                    2. Customer = Along with a User model each customer will contain a Customer model that holds a one to one relationship to each User. (OneToOneField).
+                    3. Product = The product model represents products we have in store.
+                    4. Order = The order model will represent a transaction that is placed or pending. The model will hold information such as the transaction ID, data completed and order status. This model will be a child or the customer model but a parent to Order Items.
+                    5. OrderItem = An order Item is one item with an order. So for example a shopping cart may consist of many items but is all part of one order. Therefor the OrderItem model will be a child of the PRODUCT model AND the ORDER Model.
+                    6. ShippingAddress = Not every order will need shipping information. For orders containing physical products that need to be shipping we will need to create an instance of the shipping model to know where to send the order. Shipping will simply be a child of the order model when necessary.
             1. Import "User" Model
                 1. Create a user to be a customer that can buy some products
                 2. Create a superuser to manage the app
@@ -58,18 +92,35 @@ Video 2:
             4. Shipping Model
             5. Migrate database
             6. admin.py
+    -> Add 6 products in DataBase (Name, Price, Digital, Image)
         2. Render Products
             1. Query Products
+                1. Add products to our store view in store.html
             2. Render Products
+                1. Loop Through Products
+                2. Replace Fields
+                    1. Product Price
+                    2. Product Name
+                3. Add the products dinamically(with a Loop Through) from DataBase to view store.html
         3. Product Image Field
             1. ImageField()
+                1. Install "Pillow" library (py -m pip install Pillow)
+    Pillow = library that let's us add the ImageField to our model
             2. MEDIA_ROOT
+                1. Set the path where we upload the images (When we upload a image, it is uploaded in that folder)
             3. MEDIA_URL
+                1. To render the images out
+                2. To acces all of the images from the static file
             4. Urls.py Configuration
+                1. Import: static & settings in root urls.py
+                2. Add URL path on url patterns -> give the ability to access image by using paths
             5. Render Images
+                1. Set the "product.image.url" to display dinamically
             6. Image Error Solution
+                1. Add imageURL Method (if the instance has an image, if not, return an empty string)
         4. User Cart
             1. Add data (Admin panel)
+                1. Attach a customer to our user, and add some order items to go with the order witch we will manually create from the admi panel
             2. Query Data (Cart)
                 1. User Authenticated
                 2. User not Authenticated
