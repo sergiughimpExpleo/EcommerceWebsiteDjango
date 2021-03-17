@@ -45,6 +45,18 @@ class Order(models.Model):
 
     def __str__(self):
         return  str(self.id)
+
+    @property
+    def get_cart_total(self):
+        orderitems = self.orderitem_set.all()
+        total = sum([item.get_total for item in orderitems])
+        return total
+    
+    @property
+    def get_cart_items(self):
+        orderitems = self.orderitem_set.all()
+        total = sum([item.quantity for item in orderitems])
+        return total
     
 # The OrderItem model will be connected to the customer with a one to many relationship (aka ForeignKey) and will hold the status of complete (True or False) and a transaction id along with the date this order was placed.
 # The OrderItem will need a Product attribute connected to the product model, the order this item is connected to, quantity and the date this item was added to card.
@@ -54,6 +66,12 @@ class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
     quantity = models.IntegerField(default=0, null=True, blank=True)
     data_added = models.DateTimeField(auto_now_add=True)
+    
+    @property
+    def get_total(self):
+        total = self.product.price * self.quantity
+        return total
+        
 
 # ShippingAddress will ne a child to Order and will only be created if at least one OrderItem within an order is a physical product 
 #   (if Product.digital==False)

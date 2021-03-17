@@ -9,10 +9,10 @@
             <table class="table">
                 <tr>
                     <th>
-                        <h5>Items: <strong>3</strong> </h5>
+                        <h5>Items: <strong>{{order.get_cart_items}}</strong> </h5>
                     </th>
                     <th>
-                        <h5>Total: <strong>$42</strong> </h5>
+                        <h5>Total: <strong>${{order.get_cart_total|floatformat:2}}</strong> </h5>
                     </th>
                     <th>
                         <a href="{% url 'checkout' %}" class="btn btn-success" style="float:right; margin:5px;">Checkout</a>
@@ -29,25 +29,27 @@
                 <div style="flex:1"><strong>Quantity</strong></div>
                 <div style="flex:1"><strong>Total</strong></div>
             </div>
+            {% for item in items %}
             <div class="cart-row">
-                <div style="flex:2"><img src="{% static 'images/placeholder.png' %}" alt="image1" class="row-image"></div>
+                <div style="flex:2"><img src="{{item.product.imageURL}}" alt="image1" class="row-image"></div>
                 <div style="flex:2">
-                    <p>Product 1</p>
+                    <p>{{item.product.name}}</p>
                 </div>
                 <div style="flex:1">
-                    <p>$20</p>
+                    <p>${{item.product.price|floatformat:2}}</p>
                 </div>
                 <div style="flex:1">
-                    <p class="quantity">2</p>
+                    <p class="quantity">{{item.quantity}}</p>
                     <div class="quantity">
                         <img src="{% static 'images/arrow-up.png' %}" alt="arrow-up" class="chg-quantity">
                         <img src="{% static 'images/arrow-down.png' %}" alt="arrow-down" class="chg-quantity">
                     </div>
                 </div>
                 <div style="flex:1">
-                    <p>$32</p>
+                    <p>${{item.get_total}}</p>
                 </div>
             </div>
+            {% endfor %}
         </div>
     </div>
 </div>

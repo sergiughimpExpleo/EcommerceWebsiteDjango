@@ -118,14 +118,82 @@ Video 2:
                 1. Set the "product.image.url" to display dinamically
             6. Image Error Solution
                 1. Add imageURL Method (if the instance has an image, if not, return an empty string)
+***
         4. User Cart
             1. Add data (Admin panel)
-                1. Attach a customer to our user, and add some order items to go with the order witch we will manually create from the admi panel
+                1. Attach a customer to our user, and add some order items to go with the order witch we will manually create from the admin panel
             2. Query Data (Cart)
-                1. User Authenticated
-                2. User not Authenticated
+                1. Check if User Authenticated
+                2. User not Authenticated (simple page visitor)
             3. Render data (cart.html)
+                1. Loop around the cart row and render a row for each item in the cart
+                2. Replace "ImageURL, Product Name, Price, Quantity" to dinamically data
             4. Calculating Totals
+                1. For the OrderItem model derive the total price from the product price multiplied by the quantity
+                2. For the Order model 
+                    1. add a get_cart_total to get the total of price
+                    2. add a get_cart_items to get the total of items
+                    (Use @property decorator to acces like atributes)
             5. Query Totals
             6. Render Totals
-            7. Checkout Page Data
+                1. output the totals for total_items and for total_price
+                    1. order.get_cart_items
+                    2. order.get_cart_total|floatformat:2
+            7. Checkout Page Data. Order Summary
+                1. render cart data in checkout.html
+To Do in Video 3 (Site functionality)
+    1. Site functionality for authenticated user
+        User will be able to:
+            1. add to cart
+            2. update the cart by changing the quantity, removing items
+            3. checkout as an authenticated user
+            4. Shipping Address
+            5. Process Order
+Video 3:
+    3. Site functionality -> add some JavaScript to the site
+        1. Add to Cart (Setup app and templates)
+            1. Functionality for "Logged In" users: "add to cart", "update cart", "checkout"
+            2. Ability to checkout WITHOUT payment
+            3. Use JavaScript to cover some frontend functionality and sending data to backend
+            
+            1. Cart.js
+                1. Create a card.js file for JavaScript scripts
+            2. Add Event Handlers
+                1. to the buttons on store.html
+                2. Add Class to Buttons
+                3. Product ID & Action
+                4. Add Event
+            3. Use Type Logic
+                1. Different behavior of the action
+                    1. User Login: 
+                        1. Send data to the background
+                        2. add this item to the database
+                    2. User doesn't have an account
+                        1. add data to the browser and store it
+                2. Set/Query user (main.html)
+                    1. query the users to check his status
+            4. updateItem View
+                1. Create View for creating or adding quantity to an OrderItem or removing or deleting the item if the action sent over is "remove"
+            5. updateUserOrder()
+               1. create an event Handler that identifies which type of user has clicked the "add" button and a view.url to send data if that user is logged in
+               2. create a function that gets triggered if the user is logged in and have that function send a POST request to the new view (updateItem)
+               3. create and use the FETCH API to send a post request. stringify and send the product and action as an Json object
+            6. CSRF Token
+                1. create a token for JavaScript to pass the post data https://docs.djangoproject.com/en/3.0/ref/csrf/#ajax
+                2. send Token with POST request in cart.js
+            7. updateItem view Logic
+                1. process the 'productId' and 'action' when this data is send to the view from the fetch call and print in console
+                2. Create or Update Order & OrderItem
+                3. Action logic (update or remove(when quantity is at or zero below) an item from the order)
+            8. Cart Total
+                1. Add the cart total to the cart icon as we add and remove items
+                2. User data is store view
+***
+        2. Update Cart (Models and rendering real data in pages)
+    1. Add am Event Listener
+        1. Decrease the items
+        2. Remove Items
+***
+        3. Shipping Address (Build Register user cart and orders)
+        4. Checkout Form (Guest checkout integration with Cookies)
+        5. Process Order (Add payment integrations at checkout)

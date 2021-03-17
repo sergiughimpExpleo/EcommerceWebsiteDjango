@@ -49,21 +49,22 @@
             <a href="{% url 'cart' %}" class="btn btn-outline-dark"> &#x2190; Back to Cart </a>
             <hr>
             <h3>Order Summary</h3>
-            <hr>
+            <hr> {% for item in items %}
             <div class="cart-row">
-                <div style="flex:2"><img src="{% static 'images/placeholder.png' %}" alt="image1" class="row-image"></div>
+                <div style="flex:2"><img src="{{item.product.imageURL}}" alt="image1" class="row-image"></div>
                 <div style="flex:2">
-                    <p>Product 1</p>
+                    <p>{{item.product.name}}</p>
                 </div>
                 <div style="flex:1">
-                    <p>$20.00</p>
+                    <p>${{item.product.price}}</p>
                 </div>
                 <div style="flex:1">
-                    <p>x2</p>
+                    <p>{{item.quantity}}</p>
                 </div>
             </div>
-            <h5>Items: 2</h5>
-            <h5>Total: $4</h5>
+            {% endfor %}
+            <h5>Items: {{order.get_cart_items}}</h5>
+            <h5>Total: ${{order.get_cart_total|floatformat:2}}</h5>
         </div>
     </div>
 </div>
