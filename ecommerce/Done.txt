@@ -190,10 +190,50 @@ Video 3:
                 2. User data is store view
 ***
         2. Update Cart (Models and rendering real data in pages)
-    1. Add am Event Listener
-        1. Decrease the items
-        2. Remove Items
-***
+            1. "Add" & "Remove" Clicks as an Event Listener
+                1. Decrease the items
+                2. Remove Items
+
+                1. Add classes to the up/down arrows and custom attributes for the product ID and action type
+
         3. Shipping Address (Build Register user cart and orders)
+            0. Page Logic
+                1. If item needs shipping -> show address fields
+                2. check if the items in the cart are Digital
+                3. render the payment option
+            1. Shipping Method
+                1. check if the items are not digital
+            2. Order Shipping status
+            3. Hide Shipping Form
+                1. If is no items is cart -> do not show the shipping-info
+            4. Payment Option
+                1. hide button & open payment option on submit
+                2. add demo payment button
+            5. Trigger Payment Action
+                1. add an event handler to the "payment-submit" button and a function to trigger on submission
         4. Checkout Form (Guest checkout integration with Cookies)
+            1. Hide Form of Fields
+                1. if user is logged in -> Hide Name and Email fields
+                2. if a user is logged in And Item does NOT need shipping -> Hide form & Open Payment option
+            2. Form data
+                1. Prep the date before the sending to the backend to process the order
+                2. When the button is submitted there are sending 3 things to the backend for processing the order
+                    1. Cart Total
+                    2. User information (if user is NOT logged in)
+                    3. Address shipping (if item in order needs shipping)
         5. Process Order (Add payment integrations at checkout)
+            1. Process Order View/url   
+                1. create the "view" and "url" pattern for the POST request to send data
+            2. Send POST Data
+                1. create a post call and send the data to the backend
+***
+            3. Transaction ID
+                1. Import Data Time (view.py)
+                2. Set Transaction ID variable
+            4. Set Data
+                1. parse the data from the post request and query/create some data if a user is authenticated
+            5. Confirm total
+                1. send total to frontend and make sure that the total sent matches what the cart total is actually supposed to be
+            6. Shipping Logic
+                1. create an instance of the shipping address if an address was sent
+***
