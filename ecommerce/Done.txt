@@ -237,3 +237,36 @@ Video 3:
             6. Shipping Logic
                 1. create an instance of the shipping address if an address was sent
 ***
+Video 4:
+    1. Set Cookies
+        0. Guest checkout capabilities
+            1. User visit the site is able to add items to cart and checkout without ever needing to create an account
+            2. Ability to leave the website and still have the items in the cart to next visit
+        1. Create cookie for the Cart
+            1. create cookie for the cart and store it to browser
+            2. get cookie 
+        2. Adding/Removing Items
+            1. Add to cookie item function
+    2. Render cart Total
+        1. Query Cart in view.py
+            1.  Get cookie in view
+        2. Build Cart total
+            1. total number of items that the guest visitor has in their cart and update the order objects
+    3. Build Order
+        0. create an object representation of a real order (a guest user never creates an order until checkout everything in stored in the browser cookies)
+        (1. & 2.) -> Build the cart with items without store the information in database
+        1. Order Totals
+            1. get the cart price total
+            2. query product
+            3. get & set totals = set the value of total by multiplying the product price by the quantity
+        2. Items Queryset
+            1. create a representation of an order with a dictionary to do the same for items in the cart
+            2. for cart and checkout page render the items and other information -> The item object will contain all the same atributes of the OrderItem model.
+        3. Shipping information
+            1. Add shipping information if product is shipping
+        4. Product Does Not exist
+            1. 
+    4. cookiesCart() Function
+    5. cartData()
+    6. Guest Checkout Process
+    7. guestOrder() Function
