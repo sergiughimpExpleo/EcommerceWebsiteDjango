@@ -265,8 +265,73 @@ Video 4:
         3. Shipping information
             1. Add shipping information if product is shipping
         4. Product Does Not exist
-            1. 
+***
     4. cookiesCart() Function
-    5. cartData()
+        1. Make a full cart(Order) with cart items(OrderItem)
+        2. DRY (store(), cart(), checkout()) -> cookieCart()
+
+        1. utils.py
+            1. create function cookieCart()
+            2. Import cookieCart() into views.py
+        2. Copy Cart Logic
+            1. copy all the logic that generates our cart from the browsers cookies and paste it to the new cookieCart
+        3. User cookieCart in views
+
+    5. cartData() -> create data function
+        1. Create Function
+        2. Move view logic
+        3. User cartData() in views
     6. Guest Checkout Process
+        0. User ability to checkout with the guest shopping cart
+            1. clean cart in browser cookies when users check out and redirect them from the checkout page
+            2. Send cart data to the backend and create all necessary information for the customer and order
+
+        1. Clear Cart
+            1. clear cart when the payment button/form is successfully submitted
+        2. Guest Checkout Logic
+            1. process the order When they submit the payment button. sending data to the "processOrder" view
+        3. Create guest checkout function
+            1. clean up the view by creating a functionr that takes care of creating on order for a "guest" and "returns" the order
+        4. Clean up processOrder View
     7. guestOrder() Function
+***
+Video 5:
+    1. Paypal Buttons
+        0. integrate paypal checkout into the application.
+            1. ability to do quick checkout using their paypal account Or a Credit/Debit card
+            2. client side integration (paypal API) & server side integration(python)
+            3. once the Payment is complete will be send the confirmation to the backend to update the order status
+            4. How paypal buttons work:
+                1. Add the PayPal Smart Buttons to the web page
+                2. The buyer clicks the button
+                3. the button calls PayPal Orders API to set up a transaction
+                4. the button launches the PayPal checkout experience
+                5. the buyer approves the Payment
+                6. the button calls PayPal Orders API to finalize the transaction
+                7. it is show a confirmation to the buyer
+            5. Sandbox Account
+                1. create everything using a Sandbox account to test the entire process
+                2. can change the client id to connect to a real paypal account
+        1. Add Buttons
+            1. Replace the "make payment" button with our new paypal buttons
+            2. add the script tag for the paypal API
+            3. add JavaScript to insert the paypal buttons inside (will create and add the buttons inside the empty div and will also handle all payment logic)
+        2. Style Buttons
+            1. Style attributes
+        3. Hide Button
+            1. Disable credit card option
+    2. Sandbox Account
+        1. set up a Sandbox account to test payments before we integrate with a real paypal account
+
+        1. create Sandbox Account
+            1. create two Sandbox account
+                1. one willbe a "business" account which will receive payments
+                2. pesonal account which will represent a customer that will purchase a product on th website
+        2. create App
+            1. create an "app" within paypal to generate a  "Client ID"
+                1. add to the script tag within the template, so when a customer makes a purchase, paypal knows where to send the money
+    3. Making Payments
+        1. Test Payments
+        2. Setting Price
+        3. Process Order
+        4. Live Client ID
